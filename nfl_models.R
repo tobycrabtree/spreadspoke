@@ -71,10 +71,9 @@ fitOver <- rpart(over_under_result ~ schedule_week_1to4 + schedule_week_last + s
 plot(fitOver)
 text(fitOver, cex=.5, use.n=TRUE, all=TRUE)
 summary(fitOver)
-fitOverPredicted <- rpart(score_total ~ schedule_month + stadium_type + team_home_elo_pre + team_away_elo_pre + spread + over_under_line+team_offense_home+team_defense_away + team_offense_away+team_defense_home, method="anova",data=test)
-summary(fitOverPredicted)
-plot(fitOverPredicted)
-text(fitOverPredicted, cex=.5, use.n=TRUE, all=TRUE)
+
+fitOverPredicted <- predict(fitOver,data=test,type="class")
+table(fitOverPredicted,train$over_under_result)
 
 # random forest spreads
 set.seed(2017)
