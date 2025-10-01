@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpreadSpoke - NFL Scores & Betting Lines</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>SpreadSpoke</h1>
+    <p class="tagline">NFL scores, betting lines, and weather since 1966</p>
+  </header>
+
+  <section class="donate">
+    <h2>Support the Project</h2>
+    <form action="https://www.paypal.com/donate" method="post" target="_blank">
+      <input type="hidden" name="hosted_button_id" value="tobycrabtree@gmail.com" />
+      <input type="submit" value="Buy me a coffee" />
+    </form>
+  </section>
+
+  <section class="season-selector">
+    <h2>Explore Seasons</h2>
+    <select id="seasonDropdown">
+      <option value="">Select a season</option>
+      <!-- Dynamically populated -->
+    </select>
+  </section>
+
+  <script>
+    // Populate dropdown from 1966 to current year
+    const dropdown = document.getElementById("seasonDropdown");
+    const currentYear = new Date().getFullYear();
+    for (let year = 1966; year <= currentYear; year++) {
+      const option = document.createElement("option");
+      option.value = `seasons/${year}.html`;
+      option.textContent = year;
+      dropdown.appendChild(option);
+    }
+
+    dropdown.addEventListener("change", function () {
+      if (this.value) window.location.href = this.value;
+    });
+  </script>
+</body>
+</html>
